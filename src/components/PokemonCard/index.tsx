@@ -1,5 +1,4 @@
 import React from "react";
-import { TypeColor } from "../../utils/TypeColor";
 import TypeTag from "../TypeTag";
 import {
   CardContainer,
@@ -8,7 +7,7 @@ import {
   PokemonNumber,
   TypesRow,
   PokemonImageContainer,
-  Pokemon,
+  PokemonSprite,
   PokemonShadow,
   BackGroundImageContainer,
   Dots,
@@ -23,8 +22,6 @@ interface PokemonCardProps {
 }
 
 const PokemonCard = ({ name, number, types, sprites }: PokemonCardProps) => {
-  const color = TypeColor(types[0]);
-  console.log(color);
   return (
     <CardContainer type={types[0]}>
       <TextContainer>
@@ -36,13 +33,13 @@ const PokemonCard = ({ name, number, types, sprites }: PokemonCardProps) => {
         </TypesRow>
       </TextContainer>
       <PokemonImageContainer>
-        <Pokemon src={sprites} />
+        <PokemonSprite src={sprites} />
         <PokemonShadow src={sprites} />
       </PokemonImageContainer>
-      {/* <BackGroundImageContainer>
+      <BackGroundImageContainer>
         <Dots />
         <Pokeball />
-      </BackGroundImageContainer> */}
+      </BackGroundImageContainer>
     </CardContainer>
   );
 };
