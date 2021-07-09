@@ -1,10 +1,16 @@
 import React from "react";
-import Card from "../src/components/Card";
+import PokemonCard from "./components/PokemonCard";
+import Bullsasaur from "../src/assets/images/bitmap/1.png";
 
 function App() {
   return (
     <div>
-      <Card msg="Olá" />
+      <PokemonCard
+        name="bulbasaur"
+        number="1"
+        types={["grass", "poison"]}
+        sprites={Bullsasaur}
+      />
     </div>
   );
 }
