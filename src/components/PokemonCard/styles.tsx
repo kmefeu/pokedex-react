@@ -6,12 +6,16 @@ interface CardContainerProps {
   type: string;
 }
 
-const BaseHeight = 240;
+const BaseHeight = 220;
 const ImageWidth = 300;
-const BasePadding = 50;
+const BasePadding = 30;
+const TitleSize = 46;
+const NumberSize = 28;
 
 export const CardContainer = styled.div<CardContainerProps>`
   display: flex;
+  box-sizing: border-box;
+  align-items: center;
   justify-content: space-between;
   position: relative;
   height: ${BaseHeight + "px"};
@@ -34,25 +38,28 @@ export const TextContainer = styled.div`
 export const PokemonName = styled.span`
   text-transform: capitalize;
   font-weight: bold;
-  font-size: 65px;
+  margin-top: -${NumberSize / 2 + "px"};
+  font-size: ${TitleSize + "px"};
   color: #ffffff;
 `;
 
 export const PokemonNumber = styled.span`
   font-weight: bold;
-  font-size: 32px;
+  font-size: ${NumberSize + "px"};
   color: rgba(0, 0, 0, 0.48);
 `;
 
 export const TypesRow = styled.div`
   display: flex;
   padding: 0px -5px;
+  margin-top: 5px;
 `;
 
 export const PokemonImageContainer = styled.div``;
 
 export const PokemonSprite = styled.img`
   position: absolute;
+  margin-right: ${BasePadding + "px"};
   right: 0;
   bottom: 10px;
   width: ${ImageWidth + "px"};
@@ -61,6 +68,7 @@ export const PokemonSprite = styled.img`
 
 export const PokemonShadow = styled.img`
   position: absolute;
+  margin-right: ${BasePadding + "px"};
   width: ${ImageWidth + "px"};
   height: 40px;
   right: -25px;

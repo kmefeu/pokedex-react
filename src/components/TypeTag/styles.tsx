@@ -6,6 +6,8 @@ interface TypeImageProps {
   type: string;
 }
 
+const TagSize = 32;
+
 export const TagContainer = styled.div<TypeImageProps>`
   display: flex;
   border-radius: 8px;
@@ -19,8 +21,8 @@ export const TagContainer = styled.div<TypeImageProps>`
 `;
 
 export const TypeImage = styled.div<TypeImageProps>`
-  height: 38px;
-  width: 38px;
+  height: ${TagSize + "px"};
+  width: ${TagSize + "px"};
   background-size: 100%;
   margin-right: 5px;
   background-image: url(${Default});
