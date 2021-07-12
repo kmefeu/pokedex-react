@@ -1,18 +1,8 @@
 import React from "react";
-import PokemonCard from "./components/PokemonCard";
-import Bullsasaur from "../src/assets/images/bitmap/1.png";
+import Home from "./pages/home";
 
 function App() {
-  return (
-    <div>
-      <PokemonCard
-        name="bulbasaur"
-        number="1"
-        types={["grass", "poison"]}
-        sprites={Bullsasaur}
-      />
-    </div>
-  );
+  return <Home />;
 }
 
 export default App;

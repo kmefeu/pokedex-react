@@ -6,11 +6,13 @@ interface CardContainerProps {
   type: string;
 }
 
-const BaseHeight = 220;
-const ImageWidth = 300;
+const BaseHeight = 140;
+const ImageWidth = 180;
 const BasePadding = 30;
-const TitleSize = 46;
-const NumberSize = 28;
+const TitleSize = 32;
+const NumberSize = 20;
+const BorderRadius = 8;
+const CardsHeightSpacing = 25;
 
 export const CardContainer = styled.div<CardContainerProps>`
   display: flex;
@@ -20,9 +22,9 @@ export const CardContainer = styled.div<CardContainerProps>`
   position: relative;
   height: ${BaseHeight + "px"};
   padding: ${BasePadding + "px"};
-  margin: 50px auto;
+  margin: ${CardsHeightSpacing + "px"} auto;
   box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.25);
-  border-radius: 18px;
+  border-radius: ${BorderRadius + "px"};
 
   ${({ type }) => {
     const color = TypeStyle(type);
@@ -86,7 +88,7 @@ export const Pokeball = styled.div`
   position: absolute;
   width: ${BaseHeight + "px"};
   height: ${BaseHeight + "px"};
-  right: 0px;
+  right: -${BasePadding + "px"};
   top: 0px;
   background-size: 100%;
   opacity: 0.75;

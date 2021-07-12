@@ -25,7 +25,10 @@ const PokemonCard = ({ name, number, types, sprites }: PokemonCardProps) => {
   return (
     <CardContainer type={types[0]}>
       <TextContainer>
-        <PokemonNumber>{"#" + number}</PokemonNumber>
+        <div>
+          <PokemonNumber>{"#" + number}</PokemonNumber>
+          <Dots />
+        </div>
         <PokemonName>{name}</PokemonName>
         <TypesRow>
           <TypeTag type={types[0]} />
@@ -37,7 +40,6 @@ const PokemonCard = ({ name, number, types, sprites }: PokemonCardProps) => {
         <PokemonShadow src={sprites} />
       </PokemonImageContainer>
       <BackGroundImageContainer>
-        <Dots />
         <Pokeball />
       </BackGroundImageContainer>
     </CardContainer>

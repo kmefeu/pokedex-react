@@ -6,12 +6,16 @@ interface TypeImageProps {
   type: string;
 }
 
-const TagSize = 32;
+const TagSize = 16;
+const TextSize = 14;
+const BorderRadius = 8;
+const BasePadding = 5;
 
 export const TagContainer = styled.div<TypeImageProps>`
   display: flex;
-  border-radius: 8px;
-  padding: 10px;
+  align-items: center;
+  border-radius: ${BorderRadius + "px"};
+  padding: ${BasePadding + "px"};
   margin: 0px 2.5px;
 
   ${({ type }) => {
@@ -35,7 +39,7 @@ export const TypeImage = styled.div<TypeImageProps>`
 
 export const TypeName = styled.span`
   text-transform: capitalize;
-  font-weight: bold;
-  font-size: 28px;
+  font-weight: medium;
+  font-size: ${TextSize + "px"};
   color: #ffffff;
 `;
