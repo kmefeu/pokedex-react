@@ -19,8 +19,8 @@ export const TagContainer = styled.div<TypeImageProps>`
   margin: 0px 2.5px;
 
   ${({ type }) => {
-    const color = TypeStyle(type);
-    return `background: ${color.primaryColor}`;
+    const typeStyle = TypeStyle(type);
+    return `background: ${typeStyle.primaryColor}`;
   }}
 `;
 

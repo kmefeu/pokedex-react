@@ -27,8 +27,8 @@ export const CardContainer = styled.div<CardContainerProps>`
   border-radius: ${BorderRadius + "px"};
 
   ${({ type }) => {
-    const color = TypeStyle(type);
-    return `background: ${color.secondaryColor}`;
+    const typeStyle = TypeStyle(type);
+    return `background: ${typeStyle.secondaryColor}`;
   }}
 `;
 
@@ -80,7 +80,16 @@ export const PokemonShadow = styled.img`
   transition: 1s ease-in-out;
 `;
 
-export const BackGroundImageContainer = styled.div``;
+export const BackGroundImageContainer = styled.div`
+  box-sizing: border-box;
+  position: absolute;
+  overflow: hidden;
+  margin-left: -${BasePadding + "px"};
+  height: ${BaseHeight + "px"};
+  width: 100%;
+  border-radius: ${BorderRadius + "px"};
+  /* background-color: rebeccapurple; */
+`;
 
 export const Dots = styled.div``;
 

@@ -138,8 +138,8 @@ export const Types: TypesProps = [
 ];
 
 export const TypeStyle = (type: string) => {
-  const color = Object.values(Types).find((element) => {
+  const typeStyle = Object.values(Types).find((element) => {
     return element.name === type;
   });
-  return color;
+  return typeStyle;
 };
