@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PokemonCard from "../../components/PokemonCard";
 import Bullsasaur from "../../assets/images/bitmap/1.png";
 import { MainContainer } from "./styles";
-import { useDetectPokes } from "../../api/useRequest";
+import { usePokemons } from "../../api/usePokemons";
 
 const Home: React.FC = () => {
-  const { detectedPokes, caughtPokes }: any = useDetectPokes();
+  const { caughtPokemons }: any = usePokemons();
 
   return (
     <MainContainer>
-      {/* {caughtPokes.map((item: any) => {
+      {caughtPokemons.map((item: any) => {
         return (
           <PokemonCard
             name={item.name}
@@ -18,7 +18,7 @@ const Home: React.FC = () => {
             sprites={Bullsasaur}
           />
         );
-      })} */}
+      })}
     </MainContainer>
   );
 };
