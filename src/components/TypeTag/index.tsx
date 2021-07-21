@@ -2,7 +2,7 @@ import React from "react";
 import { TagContainer, TypeImage, TypeName } from "./styles";
 
 interface TypeTagProps {
-  type: string;
+  type: any;
 }
 const TypeTag = ({ type }: TypeTagProps) => {
   return (

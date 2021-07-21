@@ -3,7 +3,7 @@ import Default from "../../assets/images/svg/types/grass.svg";
 import { TypeStyle } from "../../utils/TypeStyle";
 
 interface TypeImageProps {
-  type: string;
+  type: any;
 }
 
 const TagSize = 16;

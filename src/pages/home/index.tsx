@@ -1,26 +1,28 @@
 import React from "react";
 import PokemonCard from "../../components/PokemonCard";
-import Bullsasaur from "../../assets/images/bitmap/1.png";
 import { MainContainer } from "./styles";
-import { usePokemons } from "../../api/usePokemons";
+import { usePokemon } from "../../api/usePokemon";
 
 const Home: React.FC = () => {
-  const { caughtPokemons }: any = usePokemons();
+  const { loadingPokemonList, detailedPokemonList, loadMore }: any =
+    usePokemon();
 
-  return (
+  return !loadingPokemonList ? (
     <MainContainer>
-      {caughtPokemons.map((item: any) => {
-        return (
-          <PokemonCard
-            name={item.name}
-            number={item.id}
-            types={(item.types[0], item.types[1])}
-            sprites={Bullsasaur}
-          />
-        );
-      })}
+      {detailedPokemonList.map((item: any) => (
+        <PokemonCard
+          key={item.name}
+          name={item.name}
+          number={item.id}
+          types={item.types}
+          sprites={item.sprites.other["official-artwork"].front_default}
+        />
+      ))}
+      <button type="button" onClick={loadMore}>
+        Carregar Mais
+      </button>
     </MainContainer>
-  );
+  ) : null;
 };
 
 export default Home;

@@ -3,7 +3,7 @@ import PokeballImage from "../../assets/images/svg/pokeball.svg";
 import { TypeStyle } from "../../utils/TypeStyle";
 
 interface CardContainerProps {
-  type: string;
+  type: any;
 }
 
 const BaseHeight = 140;
@@ -88,7 +88,6 @@ export const BackGroundImageContainer = styled.div`
   height: ${BaseHeight + "px"};
   width: 100%;
   border-radius: ${BorderRadius + "px"};
-  /* background-color: rebeccapurple; */
 `;
 
 export const Dots = styled.div``;

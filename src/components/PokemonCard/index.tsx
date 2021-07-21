@@ -17,13 +17,13 @@ import {
 interface PokemonCardProps {
   name: string;
   number: string;
-  types: string[];
+  types: any[];
   sprites: string;
 }
 
 const PokemonCard = ({ name, number, types, sprites }: PokemonCardProps) => {
   return (
-    <CardContainer type={types[0]}>
+    <CardContainer type={types[0].name}>
       <TextContainer>
         <div>
           <PokemonNumber>{"#" + number}</PokemonNumber>
@@ -31,8 +31,9 @@ const PokemonCard = ({ name, number, types, sprites }: PokemonCardProps) => {
         </div>
         <PokemonName>{name}</PokemonName>
         <TypesRow>
-          <TypeTag type={types[0]} />
-          <TypeTag type={types[1]} />
+          {types.map((item) => (
+            <TypeTag type={item.name} />
+          ))}
         </TypesRow>
       </TextContainer>
       <PokemonImageContainer>

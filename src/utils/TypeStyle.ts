@@ -137,9 +137,12 @@ export const Types: TypesProps = [
   },
 ];
 
-export const TypeStyle = (type: string) => {
+export const TypeStyle = (type: any) => {
+  if (!type) {
+    return Types[0];
+  }
   const typeStyle = Object.values(Types).find((element) => {
-    return element.name === type;
+    return element === type;
   });
   return typeStyle;
 };
