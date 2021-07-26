@@ -22,13 +22,14 @@ export const usePokemon = () => {
   };
 
   const fetchPokemonDetails = useCallback(async () => {
-    const offsetBase = detailedPokemonCount.current + 30;
+    const offsetBase = 30;
+    const offsetTarget = detailedPokemonCount.current + offsetBase;
 
     const detailedPokemonToFetch = pokemonList.current.slice(
       detailedPokemonCount.current,
-      offsetBase
+      offsetTarget
     );
-    detailedPokemonCount.current = offsetBase;
+    detailedPokemonCount.current = offsetTarget;
 
     const detailedPokemon = await Promise.all(
       detailedPokemonToFetch.map((pokemon: any) => fetchDataToJson(pokemon.url))
