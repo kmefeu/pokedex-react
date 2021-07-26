@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import usePokemon from "../../api/usePokemon";
 import {
   SearchBarContainer,
   LoadingContainer,
@@ -9,11 +8,11 @@ import {
 
 const SearchBar: React.FC = () => {
   const [inputValue, setInputValue] = useState("");
-  const [inputFocus, setInputFocus] = useState<Boolean>(false);
+  const [inputFocus, setInputFocus] = useState(false);
 
   return (
     <SearchBarContainer>
-      <LoadingContainer>
+      <LoadingContainer isFocus={inputFocus} inputLength={inputValue.length}>
         <LoadingImage />
       </LoadingContainer>
       <InputField
@@ -21,6 +20,8 @@ const SearchBar: React.FC = () => {
         onChange={(input) => setInputValue(input.target.value)}
         placeholder="
         Which Pokemon are you looking for ?"
+        onFocus={() => setInputFocus(true)}
+        onBlur={() => setInputFocus(false)}
       />
     </SearchBarContainer>
   );
