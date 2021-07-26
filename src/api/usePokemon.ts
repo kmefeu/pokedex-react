@@ -8,31 +8,30 @@ export interface detectedPokesType {
 // usePokemons
 // 1. Listagem SIMPLES de todos os Pokemon (nome)
 // 2. Listagem DETALHADA de todos os Pokemon já exibidos na tela
-// 3. Função para carregar mais Pokemon
+// 3. Função para carregar mais detalhes de Pokemon
 
 export const usePokemon = () => {
+  const [detailedPokemonList, setDetailedPokemonList] = useState<any[]>([]);
   const [loadingPokemonList, setLoadingPokemonList] = useState<boolean>(true);
   const pokemonList = useRef<any[]>([]);
-
-  const [detailedPokemonList, setDetailedPokemonList] = useState<any[]>([]);
   const detailedPokemonCount = useRef<number>(0);
 
-  const fetchData = async (url: string): Promise<any> => {
+  const fetchDataToJson = async (url: string): Promise<any> => {
     const response = await fetch(url);
     return await response.json();
   };
 
   const fetchPokemonDetails = useCallback(async () => {
-    const offset = detailedPokemonCount.current;
-    detailedPokemonCount.current += 20;
+    const offsetBase = detailedPokemonCount.current + 30;
 
     const detailedPokemonToFetch = pokemonList.current.slice(
-      offset,
-      detailedPokemonCount.current
+      detailedPokemonCount.current,
+      offsetBase
     );
+    detailedPokemonCount.current = offsetBase;
 
     const detailedPokemon = await Promise.all(
-      detailedPokemonToFetch.map((pokemon: any) => fetchData(pokemon.url))
+      detailedPokemonToFetch.map((pokemon: any) => fetchDataToJson(pokemon.url))
     );
 
     return detailedPokemon;
@@ -40,13 +39,16 @@ export const usePokemon = () => {
 
   const loadMore = useCallback(async () => {
     const detailedPokemon = await fetchPokemonDetails();
-    setDetailedPokemonList((prevState) => [...prevState, ...detailedPokemon]);
+    setDetailedPokemonList((previousState) => [
+      ...previousState,
+      ...detailedPokemon,
+    ]);
   }, [fetchPokemonDetails]);
 
   useEffect(() => {
     async function initialLoad() {
-      const url = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=9999";
-      const { results } = await fetchData(url);
+      const url = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=1050";
+      const { results } = await fetchDataToJson(url);
 
       pokemonList.current = results;
 
@@ -58,10 +60,11 @@ export const usePokemon = () => {
     initialLoad();
   }, [fetchPokemonDetails]);
 
-  console.log(detailedPokemonList);
+  //console.log(detailedPokemonList);
 
   return {
     loadingPokemonList,
+    setLoadingPokemonList,
     pokemonList,
     detailedPokemonList,
     loadMore,

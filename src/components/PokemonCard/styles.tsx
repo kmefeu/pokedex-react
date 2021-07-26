@@ -12,7 +12,7 @@ const BasePadding = 30;
 const TitleSize = 32;
 const NumberSize = 20;
 const BorderRadius = 8;
-const CardsHeightSpacing = 25;
+const CardsHeightSpacing = 30;
 
 export const CardContainer = styled.div<CardContainerProps>`
   display: flex;
@@ -25,6 +25,27 @@ export const CardContainer = styled.div<CardContainerProps>`
   margin: ${CardsHeightSpacing + "px"} auto;
   box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.25);
   border-radius: ${BorderRadius + "px"};
+
+  &:hover {
+    animation: 10s linear infinite moveRightCardBackGround;
+    background-image: linear-gradient(
+      45deg,
+      transparent 45%,
+      rgba(255, 255, 255, 0.65) 45%,
+      rgba(255, 255, 255, 0.1) 70%,
+      transparent 70%
+    );
+    transform: scale(1.05);
+  }
+
+  @keyframes moveRightCardBackGround {
+    0% {
+      background-position: 0 0px;
+    }
+    100% {
+      background-position: 2000px;
+    }
+  }
 
   ${({ type }) => {
     const typeStyle = TypeStyle(type);
@@ -96,7 +117,7 @@ export const Pokeball = styled.div`
   position: absolute;
   width: ${BaseHeight + "px"};
   height: ${BaseHeight + "px"};
-  right: -${BasePadding + "px"};
+  right: -${-20 + BasePadding + "px"};
   top: 0px;
   background-size: 100%;
   opacity: 0.75;

@@ -19,11 +19,12 @@ interface PokemonCardProps {
   number: string;
   types: any[];
   sprites: string;
+  ref?: any;
 }
 
 const PokemonCard = ({ name, number, types, sprites }: PokemonCardProps) => {
   return (
-    <CardContainer type={types[0].name}>
+    <CardContainer type={types[0].type.name}>
       <TextContainer>
         <div>
           <PokemonNumber>{"#" + number}</PokemonNumber>
@@ -31,8 +32,8 @@ const PokemonCard = ({ name, number, types, sprites }: PokemonCardProps) => {
         </div>
         <PokemonName>{name}</PokemonName>
         <TypesRow>
-          {types.map((item) => (
-            <TypeTag type={item.name} />
+          {types.map((item, index) => (
+            <TypeTag type={item.type.name} key={index} />
           ))}
         </TypesRow>
       </TextContainer>

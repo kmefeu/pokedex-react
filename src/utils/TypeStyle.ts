@@ -142,7 +142,7 @@ export const TypeStyle = (type: any) => {
     return Types[0];
   }
   const typeStyle = Object.values(Types).find((element) => {
-    return element === type;
+    return element.name === type;
   });
   return typeStyle;
 };

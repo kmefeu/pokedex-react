@@ -9,7 +9,7 @@ interface TypeImageProps {
 const TagSize = 16;
 const TextSize = 14;
 const BorderRadius = 8;
-const BasePadding = 5;
+const BasePadding = 6;
 
 export const TagContainer = styled.div<TypeImageProps>`
   display: flex;
@@ -20,7 +20,7 @@ export const TagContainer = styled.div<TypeImageProps>`
 
   ${({ type }) => {
     const typeStyle = TypeStyle(type);
-    return `background: ${typeStyle.primaryColor}`;
+    return `background-color: ${typeStyle.primaryColor}`;
   }}
 `;
 
@@ -33,7 +33,7 @@ export const TypeImage = styled.div<TypeImageProps>`
 
   ${({ type }) => {
     const color = TypeStyle(type);
-    return `background: ${color.icon}`;
+    return `background-image: url(${color.icon})`;
   }}
 `;
 
