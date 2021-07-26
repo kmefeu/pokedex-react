@@ -1,0 +1,60 @@
+:root {
+  --size1: 660px;
+  --size2: 985px;
+  --sizeTag: 28px;
+  --borderRadius: 24px;
+  --borderRadius2: 18px;
+  --borderRadius3: 8px;
+  --shadow: 0px 20px 50px rgba(0, 0, 0, 0.25);
+  --white: #ffffff;
+  --darkWhite: #f0f0f0;
+  --lightDark: rgba(0, 0, 0, 0.48);
+  --midGray: #69696b;
+  --lightGray: #d3d3d3;
+  --red: #d80a0a;
+  --grass: #78c850;
+  --grassBg: #72b81d;
+  --poison: #a040a0;
+  --poisonBg: #6936a8;
+  --normal: #a8a878;
+  --normalBg: #a79b6c;
+  --fighting: #c03028;
+  --fightingBg: #cc5b21;
+  --flying: #a890f0;
+  --flyingBg: #7779d9;
+  --ground: #e0c068;
+  --groundBg: #eda861;
+  --rock: #b8a038;
+  --rockBg: #c48c31;
+  --bug: #a8b820;
+  --bugBg: #7fb881;
+  --ghost: #705898;
+  --ghostBg: #5865a6;
+  --steel: #b8b8d0;
+  --steelBg: #b8ccde;
+  --fire: #f08030;
+  --fireBg: #f84025;
+  --water: #6890f0;
+  --waterBg: #4b93ca;
+  --electric: #f8d030;
+  --electricBg: #fca523;
+  --psychic: #f85888;
+  --psychicBg: #d33cb5;
+  --ice: #98d8d8;
+  --iceBg: #95bbe6;
+  --dark: #705848;
+  --darkBg: #7d4f4a;
+  --fairy: #ff65d5;
+  --fairyBg: #bd59ff;
+  --dragon: #7038f8;
+  --dragonBg: #6770e0;
+}
+
+* {
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
