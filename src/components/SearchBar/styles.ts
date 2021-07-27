@@ -1,6 +1,4 @@
-import { useEffect } from "react";
 import styled from "styled-components";
-import PokeBall from "../../assets/images/svg/pokeball.svg";
 
 interface LoadingContainerProps {
   isFocus: boolean;
@@ -28,27 +26,29 @@ export const SearchBarContainer = styled.div`
 `;
 
 export const LoadingContainer = styled.div<LoadingContainerProps>`
+  display: flex;
+  align-content: center;
+  justify-content: center;
   width: 60px;
   height: 100%;
   transition: background-color 1s ease-in-out;
   border-radius: 0px 0px 0px 24px;
 
-  ${({ isFocus }) =>
-    isFocus ? `background:#d80a0a` : `background: var(--midGray);`}
-
   ${({ inputLength }) =>
     inputLength > 0
-      ? `border-radius: 0px 0px 0px 24px`
-      : `border-radius: 0px 0px 24px 24px`}
+      ? `border-radius: 0px 0px 0px 24px;`
+      : `border-radius: 0px 0px 24px 24px;`}
+
+  ${({ isFocus }) =>
+    isFocus
+      ? `background-color:var(--red);`
+      : `background-color: var(--midGray);`}
 `;
 
-export const LoadingImage = styled.div`
-  width: 100%;
-  height: 100%;
-  background-size: 55%;
+export const LoadingImage = styled.img`
+  width: 35px;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url(${PokeBall});
 `;
 
 export const InputField = styled.input`
@@ -57,8 +57,8 @@ export const InputField = styled.input`
   border-radius: 0px 0px 24px 0px;
   color: var(--midGray);
   transition: 1s ease-in-out;
-  font-size: 16px;
-  padding-left: 30px;
+  font-size: 18px;
+  padding-left: 10px;
   background-color: transparent;
 
   input::-webkit-input-placeholder {

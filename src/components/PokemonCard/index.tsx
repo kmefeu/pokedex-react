@@ -1,5 +1,6 @@
+import TypeTag from "components/TypeTag";
 import React from "react";
-import TypeTag from "../TypeTag";
+
 import {
   CardContainer,
   TextContainer,

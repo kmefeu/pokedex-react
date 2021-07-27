@@ -61,7 +61,7 @@ export const TextContainer = styled.div`
 export const PokemonName = styled.span`
   text-transform: capitalize;
   font-weight: bold;
-  margin-top: -${NumberSize / 2 + "px"};
+  margin-top: -${NumberSize / 3 + "px"};
   font-size: ${TitleSize + "px"};
   color: #ffffff;
 `;

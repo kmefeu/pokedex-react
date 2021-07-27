@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import LoadingPokeBall from "../../assets/images/svg/loadingPokeball.svg";
+
 import {
   SearchBarContainer,
   LoadingContainer,
@@ -13,7 +15,7 @@ const SearchBar: React.FC = () => {
   return (
     <SearchBarContainer>
       <LoadingContainer isFocus={inputFocus} inputLength={inputValue.length}>
-        <LoadingImage />
+        <LoadingImage src={LoadingPokeBall} />
       </LoadingContainer>
       <InputField
         type="text"

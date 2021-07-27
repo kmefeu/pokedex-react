@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from "react";
+import { fetchDataToJson } from "./fetchDataToJson";
 
 export interface detectedPokesType {
   name: string;
@@ -15,11 +16,6 @@ export const usePokemon = () => {
   const [loadingPokemonList, setLoadingPokemonList] = useState<boolean>(true);
   const pokemonList = useRef<any[]>([]);
   const detailedPokemonCount = useRef<number>(0);
-
-  const fetchDataToJson = async (url: string): Promise<any> => {
-    const response = await fetch(url);
-    return await response.json();
-  };
 
   const fetchPokemonDetails = useCallback(async () => {
     const offsetBase = 30;
@@ -46,6 +42,14 @@ export const usePokemon = () => {
     ]);
   }, [fetchPokemonDetails]);
 
+  const fecthPokemonByUrl = async (url: string) => {
+    const { result } = await fetchDataToJson(url);
+    setDetailedPokemonList((previousState) => [
+      ...previousState,
+      ...(previousState[result.id - 1] = result),
+    ]);
+  };
+
   useEffect(() => {
     async function initialLoad() {
       const url = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=1050";
@@ -66,6 +70,7 @@ export const usePokemon = () => {
   return {
     loadingPokemonList,
     setLoadingPokemonList,
+    fecthPokemonByUrl,
     pokemonList,
     detailedPokemonList,
     loadMore,
