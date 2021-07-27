@@ -1,6 +1,6 @@
+import usePokemon from "api/hook/usePokemon";
+import PokemonCard from "components/PokemonCard";
 import React, { useEffect, useRef } from "react";
-import usePokemon from "../../api/usePokemon";
-import PokemonCard from "../PokemonCard";
 import { PokemonCardListContainer, InfiniteScrollTrigger } from "./styles";
 
 const PokemonCardList: React.FC = () => {

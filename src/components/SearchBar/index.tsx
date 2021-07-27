@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import LoadingPokeBall from "../../assets/images/svg/loadingPokeball.svg";
+import LoadingPokeBall from "assets/images/svg/loadingPokeball.svg";
 
 import {
   SearchBarContainer,
