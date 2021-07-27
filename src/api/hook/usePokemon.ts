@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from "react";
-import { fetchDataToJson } from "./fetchDataToJson";
+import { fetchDataToJson } from "../fetchDataToJson";
 
 export interface detectedPokesType {
   name: string;
