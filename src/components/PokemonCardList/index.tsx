@@ -1,53 +1,40 @@
-import usePokemon from "api/hook/usePokemon";
+import useInfiniteScroll from "api/hook/useInfiniteScroll";
+import InfiniteScrollTrigger from "components/InfiniteScrollTrigger";
 import PokemonCard from "components/PokemonCard";
-import React, { useEffect, useRef } from "react";
-import { PokemonCardListContainer, InfiniteScrollTrigger } from "./styles";
+import { PokemonCardListContainer } from "./styles";
+import { scrollDirectionEnum } from "shapes/enum/scrollDirectionEnum";
 
 const PokemonCardList: React.FC = () => {
   const {
-    loadingPokemonList,
-    setLoadingPokemonList,
-    detailedPokemonList,
-    loadMore,
-  }: any = usePokemon();
-
-  const infiniteScrollTrigger = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const intersectionObserver = new IntersectionObserver((entries) => {
-      if (entries.some((entry) => entry.isIntersecting)) {
-        loadMore();
-      }
-    });
-
-    if (infiniteScrollTrigger.current)
-      intersectionObserver.observe(infiniteScrollTrigger.current);
-
-    return () => intersectionObserver.disconnect();
-  }, [loadMore]);
+    setScrollDirection,
+    setLoadCalls,
+    slicedDetailedPokemonList,
+    loadingDetailedPokemonList,
+  } = useInfiniteScroll();
 
   return (
     <PokemonCardListContainer>
-      {detailedPokemonList.map((item: any, index: number) =>
-        detailedPokemonList.length === index + 1 ? (
-          <PokemonCard
-            key={item.index}
-            name={item.name}
-            number={item.id}
-            types={item.types}
-            sprites={item.sprites.other["official-artwork"].front_default}
-          />
-        ) : (
-          <PokemonCard
-            key={item.index}
-            name={item.name}
-            number={item.id}
-            types={item.types}
-            sprites={item.sprites.other["official-artwork"].front_default}
-          />
-        )
-      )}
-      <InfiniteScrollTrigger ref={infiniteScrollTrigger} />
+      {slicedDetailedPokemonList?.map((item: any, index: number) => (
+        <PokemonCard
+          key={index}
+          name={item.name}
+          number={item.id}
+          types={item.pokemon_v2_pokemontypes}
+          sprites={
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/" +
+            item.id +
+            ".gif"
+          }
+        />
+      ))}
+
+      <InfiniteScrollTrigger
+        functionToTrigger={() => {
+          setScrollDirection(scrollDirectionEnum.down);
+          setLoadCalls((previousState) => previousState + 1);
+        }}
+        loading={loadingDetailedPokemonList}
+      />
     </PokemonCardListContainer>
   );
 };

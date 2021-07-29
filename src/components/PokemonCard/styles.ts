@@ -7,7 +7,7 @@ interface CardContainerProps {
 }
 
 const BaseHeight = 140;
-const ImageWidth = 180;
+const SpriteHeight = 160;
 const BasePadding = 30;
 const TitleSize = 32;
 const NumberSize = 20;
@@ -27,23 +27,23 @@ export const CardContainer = styled.div<CardContainerProps>`
   border-radius: ${BorderRadius + "px"};
 
   &:hover {
-    animation: 10s linear infinite moveRightCardBackGround;
+    animation: 60s linear infinite moveRightCardBackGround;
     background-image: linear-gradient(
       45deg,
       transparent 45%,
       rgba(255, 255, 255, 0.65) 45%,
-      rgba(255, 255, 255, 0.1) 70%,
-      transparent 70%
+      rgba(255, 255, 255, 0.1) 80%,
+      transparent 80%
     );
     transform: scale(1.05);
   }
 
   @keyframes moveRightCardBackGround {
     0% {
-      background-position: 0 0px;
+      background-position: 0px;
     }
     100% {
-      background-position: 2000px;
+      background-position: 15000px;
     }
   }
 
@@ -85,14 +85,18 @@ export const PokemonSprite = styled.img`
   margin-right: ${BasePadding + "px"};
   right: 0;
   bottom: 10px;
-  width: ${ImageWidth + "px"};
+  height: ${SpriteHeight + "px"};
   z-index: 1;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
 `;
 
 export const PokemonShadow = styled.img`
   position: absolute;
   margin-right: ${BasePadding + "px"};
-  width: ${ImageWidth + "px"};
+  min-width: ${SpriteHeight + "px"};
   height: 40px;
   right: -25px;
   bottom: 18px;

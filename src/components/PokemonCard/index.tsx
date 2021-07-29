@@ -25,7 +25,7 @@ interface PokemonCardProps {
 
 const PokemonCard = ({ name, number, types, sprites }: PokemonCardProps) => {
   return (
-    <CardContainer type={types[0].type.name}>
+    <CardContainer type={types[0].pokemon_v2_type.name}>
       <TextContainer>
         <div>
           <PokemonNumber>{"#" + number}</PokemonNumber>
@@ -34,7 +34,7 @@ const PokemonCard = ({ name, number, types, sprites }: PokemonCardProps) => {
         <PokemonName>{name}</PokemonName>
         <TypesRow>
           {types.map((item, index) => (
-            <TypeTag type={item.type.name} key={index} />
+            <TypeTag type={item.pokemon_v2_type.name} key={index} />
           ))}
         </TypesRow>
       </TextContainer>

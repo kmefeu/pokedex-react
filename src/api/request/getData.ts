@@ -1,14 +1,14 @@
 import axios from "axios";
 
-const getData = (inputQuery: string) => {
-  axios({
+const getData = async (inputQuery: string) => {
+  return await axios({
     url: "https://beta.pokeapi.co/graphql/v1beta",
     method: "post",
     data: {
       query: inputQuery,
     },
   }).then((result) => {
-    console.log(result.data);
+    return result.data;
   });
 };
 

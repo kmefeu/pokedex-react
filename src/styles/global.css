@@ -55,6 +55,24 @@
   box-sizing: border-box;
 }
 
+/* width */
 ::-webkit-scrollbar {
+  width: 15px;
+  transition: 0.5s ease-in-out;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
   display: none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--midGray);
+  border-radius: 7.5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--red);
 }
