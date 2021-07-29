@@ -22,8 +22,6 @@ export const useInfiniteScroll = () => {
   const [offsetTarget, setOffsetTarget] = useState(offset);
   const [scrollDirection, setScrollDirection] = useState<scrollDirectionEnum>();
 
-  // AllPokemonCardInfo
-
   useEffect(() => {
     const allPokemonCardsInfo = async () => {
       const {
@@ -33,33 +31,22 @@ export const useInfiniteScroll = () => {
       setSlicedDetailedPokemonList(
         pokemon_v2_pokemon.slice(offsetBase, offsetTarget)
       );
+
       setLoadingDetailedPokemonList(false);
     };
     allPokemonCardsInfo();
   }, []);
 
-  // InfiniteScroll Conductor
   useEffect(() => {
-    console.log("Conductor");
-
     let localBase = offsetBase;
     let localTarget = offsetTarget;
-    let localOffset = offset;
-
     setLoadingSlicedDetailedPokemonList(true);
 
     if (detailedPokemonList) {
-      if (scrollDirection === scrollDirectionEnum.up) {
-        setOffsetBase((previousState) => previousState - localOffset);
-        localBase -= localOffset;
-        console.log("Up");
-      }
       if (scrollDirection === scrollDirectionEnum.down) {
-        setOffsetTarget((previousState: any) => previousState + localOffset);
-        localTarget += localOffset;
-        console.log("Down");
+        setOffsetTarget((previousState: any) => previousState + offset);
+        localTarget += offset;
       }
-      console.log(localBase, localTarget);
 
       setSlicedDetailedPokemonList(
         detailedPokemonList?.slice(localBase, localTarget)
@@ -68,14 +55,14 @@ export const useInfiniteScroll = () => {
     }
   }, [loadCalls]);
 
-  console.log("Sliced List", slicedDetailedPokemonList);
-
   return {
     slicedDetailedPokemonList,
     loadingSlicedDetailedPokemonList,
     setScrollDirection,
     loadingDetailedPokemonList,
     setLoadCalls,
+    setOffset,
+    setOffsetBase,
   };
 };
 
