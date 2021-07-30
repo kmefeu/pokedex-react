@@ -16,7 +16,6 @@ const InfiniteScrollTrigger = (props: InfiniteScrollTriggerInterface) => {
     const intersectionObserver = new IntersectionObserver((entries) => {
       if (entries.some((entry) => entry.isIntersecting)) {
         functionToTrigger();
-        console.log("Trigged");
       }
     });
 

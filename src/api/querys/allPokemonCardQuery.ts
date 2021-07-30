@@ -7,9 +7,6 @@ pokemon_v2_pokemon(limit: 1050, offset: 0) {
           name
         }
       }
-      pokemon_v2_pokemonsprites {
-        sprites
-      }
     }
   }
 `;

@@ -22,6 +22,30 @@ export const useInfiniteScroll = () => {
   const [offsetTarget, setOffsetTarget] = useState(offset);
   const [scrollDirection, setScrollDirection] = useState<scrollDirectionEnum>();
 
+  const pokemonCardQueryBuilder = (
+    queryOffsetBase: number,
+    queryOffsetTarget: number
+  ) => {
+    return (
+      `{
+      pokemon_v2_pokemon(limit: ` +
+      queryOffsetBase +
+      `, offset: ` +
+      queryOffsetTarget +
+      `) {
+            name
+            id
+            pokemon_v2_pokemontypes {
+              pokemon_v2_type {
+                name
+              }
+            }
+          }
+        }
+      `
+    );
+  };
+
   useEffect(() => {
     const allPokemonCardsInfo = async () => {
       const {
@@ -54,6 +78,8 @@ export const useInfiniteScroll = () => {
       setLoadingSlicedDetailedPokemonList(false);
     }
   }, [loadCalls]);
+
+  console.log(detailedPokemonList);
 
   return {
     slicedDetailedPokemonList,
