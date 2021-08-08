@@ -12,17 +12,6 @@ const SearchBar: React.FC = () => {
   const [inputValue, setInputValue] = useState("");
   const [inputFocus, setInputFocus] = useState(false);
 
-  // TODO SEARCH FILTER
-  // function handleSearch() {
-  //   if (inputValue) {
-  //     const filteredList = pokemonList.filter(pokemon => {
-  //       return pokemon.name.includes(inputValue.toLowerCase());
-  //     });
-
-  //     setFilteredPokemonList(filteredList);
-  //   }
-  // }
-
   return (
     <SearchBarContainer>
       <LoadingContainer isFocus={inputFocus} inputLength={inputValue.length}>

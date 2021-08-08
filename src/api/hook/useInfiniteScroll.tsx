@@ -1,91 +1,43 @@
-import { allPokemonCardQuery } from "api/querys/allPokemonCardQuery";
+import pokemonCardQueryBuilder from "api/querys/pokemonCardQueryBuilder";
 import getData from "api/request/getData";
 import { useEffect, useState } from "react";
-import scrollDirectionEnum from "shapes/enum/scrollDirectionEnum";
 
 export const useInfiniteScroll = () => {
-  const [detailedPokemonList, setDetailedPokemonList] = useState<any[]>();
-  const [loadingDetailedPokemonList, setLoadingDetailedPokemonList] =
-    useState(true);
-
-  const [slicedDetailedPokemonList, setSlicedDetailedPokemonList] = useState<
-    any[]
-  >([]);
-  const [
-    loadingSlicedDetailedPokemonList,
-    setLoadingSlicedDetailedPokemonList,
-  ] = useState(true);
-
-  const [loadCalls, setLoadCalls] = useState(0);
+  const [pokemonList, setPokemonList] = useState<any[]>([]);
+  const [loadingPokemonList, setLoadingPokemonList] = useState(true);
   const [offset, setOffset] = useState(20);
-  const [offsetBase, setOffsetBase] = useState(0);
   const [offsetTarget, setOffsetTarget] = useState(offset);
-  const [scrollDirection, setScrollDirection] = useState<scrollDirectionEnum>();
+  const [offsetBase, setOffsetBase] = useState(0);
+  const [loadCalls, setLoadCalls] = useState(0);
 
-  const pokemonCardQueryBuilder = (
-    queryOffsetBase: number,
-    queryOffsetTarget: number
-  ) => {
-    return (
-      `{
-      pokemon_v2_pokemon(limit: ` +
-      queryOffsetBase +
-      `, offset: ` +
-      queryOffsetTarget +
-      `) {
-            name
-            id
-            pokemon_v2_pokemontypes {
-              pokemon_v2_type {
-                name
-              }
-            }
-          }
-        }
-      `
-    );
+  const getPokemonCardsInfoBlock = async () => {
+    let localBase = offsetBase;
+    let localTarget = offsetTarget;
+    const cardQuey = pokemonCardQueryBuilder(localBase, localTarget);
+    const {
+      data: { pokemon_v2_pokemon },
+    } = await getData(cardQuey);
+
+    setPokemonList((previousState) => [
+      ...previousState,
+      ...pokemon_v2_pokemon,
+    ]);
+
+    setOffsetBase(localBase + offset);
+    setOffsetTarget(localTarget + offset);
   };
 
   useEffect(() => {
-    const allPokemonCardsInfo = async () => {
-      const {
-        data: { pokemon_v2_pokemon },
-      } = await getData(allPokemonCardQuery);
-      setDetailedPokemonList(pokemon_v2_pokemon);
-      setSlicedDetailedPokemonList(
-        pokemon_v2_pokemon.slice(offsetBase, offsetTarget)
-      );
-
-      setLoadingDetailedPokemonList(false);
-    };
-    allPokemonCardsInfo();
-  }, []);
-
-  useEffect(() => {
-    let localBase = offsetBase;
-    let localTarget = offsetTarget;
-    setLoadingSlicedDetailedPokemonList(true);
-
-    if (detailedPokemonList) {
-      if (scrollDirection === scrollDirectionEnum.down) {
-        setOffsetTarget((previousState: any) => previousState + offset);
-        localTarget += offset;
-      }
-
-      setSlicedDetailedPokemonList(
-        detailedPokemonList?.slice(localBase, localTarget)
-      );
-      setLoadingSlicedDetailedPokemonList(false);
-    }
+    setLoadingPokemonList(true);
+    getPokemonCardsInfoBlock().then(() => setLoadingPokemonList(false));
   }, [loadCalls]);
 
-  console.log(detailedPokemonList);
+  console.log(pokemonList);
 
   return {
-    slicedDetailedPokemonList,
-    loadingSlicedDetailedPokemonList,
-    setScrollDirection,
-    loadingDetailedPokemonList,
+    pokemonList,
+    loadingPokemonList,
+    offset,
     setLoadCalls,
     setOffset,
     setOffsetBase,
