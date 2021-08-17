@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import PokeballImage from "../../assets/images/svg/pokeball.svg";
 import { TypeStyle } from "../../utils/TypeStyle";
@@ -14,7 +15,7 @@ const NumberSize = 20;
 const BorderRadius = 8;
 const CardsHeightSpacing = 30;
 
-export const CardContainer = styled.div<CardContainerProps>`
+export const CardContainer = styled(Link)<CardContainerProps>`
   display: flex;
   box-sizing: border-box;
   align-items: center;
@@ -25,6 +26,7 @@ export const CardContainer = styled.div<CardContainerProps>`
   margin: ${CardsHeightSpacing + "px"} auto;
   box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.25);
   border-radius: ${BorderRadius + "px"};
+  text-decoration: none;
 
   &:hover {
     animation: 60s linear infinite moveRightCardBackGround;

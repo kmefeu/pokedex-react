@@ -10,23 +10,20 @@ const PokemonCardList: React.FC = () => {
 
   return (
     <PokemonCardListContainer>
-      {loadingPokemonList ? (
-        <LoadingPokemonCardList listLength={offset} />
-      ) : (
-        pokemonList?.map((item: any, index: number) => (
-          <PokemonCard
-            key={index}
-            name={item.name}
-            number={item.id}
-            types={item.pokemon_v2_pokemontypes}
-            sprites={
-              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/" +
-              item.id +
-              ".gif"
-            }
-          />
-        ))
-      )}
+      {pokemonList?.map((item: any, index: number) => (
+        <PokemonCard
+          loading={loadingPokemonList}
+          key={index}
+          name={item.name}
+          id={item.id}
+          types={item.pokemon_v2_pokemontypes}
+          sprites={
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/" +
+            item.id +
+            ".gif"
+          }
+        />
+      ))}
 
       <InfiniteScrollTrigger
         functionToTrigger={() => {

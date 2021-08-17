@@ -1,11 +1,11 @@
 import React from "react";
-import Home from "./pages/home";
-import "../src/styles/reset.css";
-import "../src/styles/font.css";
-import "../src/styles/global.css";
+import "styles/reset.css";
+import "styles/font.css";
+import "styles/global.css";
+import Routes from "routes";
 
 function App() {
-  return <Home />;
+  return <Routes />;
 }
 
 export default App;

@@ -17,35 +17,40 @@ import {
 
 interface PokemonCardProps {
   name: string;
-  number: string;
+  id: string;
   types: any[];
   sprites: string;
   ref?: any;
+  loading: boolean;
 }
 
-const PokemonCard = ({ name, number, types, sprites }: PokemonCardProps) => {
+const PokemonCard = ({ name, id, types, sprites, loading }: PokemonCardProps) => {
   return (
-    <CardContainer type={types[0].pokemon_v2_type.name}>
+    loading ? ():
+    (
+
+      <CardContainer to={`/pokemon/${id}`} type={types[0].pokemon_v2_type.name}>
       <TextContainer>
-        <div>
-          <PokemonNumber>{"#" + number}</PokemonNumber>
-          <Dots />
-        </div>
-        <PokemonName>{name}</PokemonName>
-        <TypesRow>
-          {types.map((item, index) => (
-            <TypeTag type={item.pokemon_v2_type.name} key={index} />
-          ))}
+      <div>
+      <PokemonNumber>{"#" + id}</PokemonNumber>
+      <Dots />
+      </div>
+      <PokemonName>{name}</PokemonName>
+      <TypesRow>
+      {types.map((item, index) => (
+        <TypeTag type={item.pokemon_v2_type.name} key={index} />
+        ))}
         </TypesRow>
-      </TextContainer>
-      <PokemonImageContainer>
+        </TextContainer>
+        <PokemonImageContainer>
         <PokemonSprite src={sprites} />
         <PokemonShadow src={sprites} />
-      </PokemonImageContainer>
-      <BackGroundImageContainer>
+        </PokemonImageContainer>
+        <BackGroundImageContainer>
         <Pokeball />
-      </BackGroundImageContainer>
-    </CardContainer>
+        </BackGroundImageContainer>
+        </CardContainer>
+        )
   );
 };
 
