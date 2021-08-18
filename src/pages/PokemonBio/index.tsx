@@ -1,7 +1,9 @@
 import getData from "api/request/getData";
+import PokemonRadarChart from "components/PokemonRadarChart";
 import TypeTag from "components/TypeTag";
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
+
 import {
   Container,
   FlavorText,
@@ -16,6 +18,7 @@ import {
   PokemonName,
   PokemonShadow,
   PokemonSprite,
+  ChartContainer,
 } from "./styles";
 
 const PokemonBio: React.FC = () => {
@@ -109,6 +112,12 @@ const PokemonBio: React.FC = () => {
             </PokemonSpritesRow>
           </LeftContainer>
           <RightContainer>
+            <ChartContainer>
+              <PokemonRadarChart
+                data={pokemon.pokemon_v2_pokemonstats}
+                type={pokemon.pokemon_v2_pokemontypes[0].pokemon_v2_type.name}
+              />
+            </ChartContainer>
             <FlavorText>
               {
                 pokemon.pokemon_v2_pokemonspecy.pokemon_v2_pokemonspecies[0]

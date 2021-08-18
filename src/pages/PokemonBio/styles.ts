@@ -7,6 +7,7 @@ interface CardContainerProps {
 
 export const Container = styled.div`
   display: flex;
+  height: 100vh;
   box-sizing: border-box;
 `;
 
@@ -75,8 +76,14 @@ export const PokemonShadow = styled.img`
 `;
 
 export const RightContainer = styled.div`
+  width: 40%;
   background-color: var(--darkWhite);
   padding: 45px;
+`;
+
+export const ChartContainer = styled.div`
+  width: 100%;
+  height: 280px;
 `;
 
 export const FlavorText = styled.p`
@@ -99,12 +106,14 @@ export const Line = styled.div`
 
 export const PokemonStats = styled.div`
   color: var(--midGray);
+
   li {
     font-weight: 300;
     font-size: 26px;
     line-height: 22px;
     margin-bottom: 25px;
     text-transform: capitalize;
+    list-style: none;
 
     b {
       font-weight: 500;

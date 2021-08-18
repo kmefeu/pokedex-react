@@ -1,7 +1,6 @@
 import useInfiniteScroll from "api/hook/useInfiniteScroll";
 import InfiniteScrollTrigger from "components/InfiniteScrollTrigger";
 import PokemonCard from "components/PokemonCard";
-import LoadingPokemonCardList from "components/LoadingPokemonCardList";
 import { PokemonCardListContainer } from "./styles";
 
 const PokemonCardList: React.FC = () => {
@@ -13,6 +12,7 @@ const PokemonCardList: React.FC = () => {
       {pokemonList?.map((item: any, index: number) => (
         <PokemonCard
           loading={loadingPokemonList}
+          LoadingIndex={index}
           key={index}
           name={item.name}
           id={item.id}

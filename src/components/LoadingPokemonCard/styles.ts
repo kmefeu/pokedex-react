@@ -8,20 +8,6 @@ const BaseHeight = 140;
 const BorderRadius = 8;
 const CardsHeightSpacing = 30;
 
-export const ListContainer = styled.div`
-  @keyframes pulse {
-    0% {
-      background-position: 0px 0px;
-    }
-    50% {
-      transform: scale(1.025);
-    }
-    100% {
-      background-position: 800px 0px;
-    }
-  }
-`;
-
 export const CardContainer = styled.div<animationProps>`
   box-sizing: border-box;
   height: ${BaseHeight + "px"};
@@ -36,6 +22,18 @@ export const CardContainer = styled.div<animationProps>`
 export const Card = styled.div`
   width: 100%;
   height: 100%;
+
+  @keyframes pulse {
+    0% {
+      background-position: 0px 0px;
+    }
+    50% {
+      transform: scale(1.025);
+    }
+    100% {
+      background-position: 800px 0px;
+    }
+  }
 
   animation: 5s linear infinite pulse;
   background-image: linear-gradient(

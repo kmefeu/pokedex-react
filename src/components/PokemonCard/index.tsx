@@ -1,3 +1,4 @@
+import LoadingPokemonCard from "components/LoadingPokemonCard";
 import TypeTag from "components/TypeTag";
 import React from "react";
 
@@ -22,35 +23,41 @@ interface PokemonCardProps {
   sprites: string;
   ref?: any;
   loading: boolean;
+  LoadingIndex: number;
 }
 
-const PokemonCard = ({ name, id, types, sprites, loading }: PokemonCardProps) => {
-  return (
-    loading ? ():
-    (
-
-      <CardContainer to={`/pokemon/${id}`} type={types[0].pokemon_v2_type.name}>
+const PokemonCard = ({
+  name,
+  id,
+  types,
+  sprites,
+  loading,
+  LoadingIndex,
+}: PokemonCardProps) => {
+  return loading ? (
+    <LoadingPokemonCard LoadingDelayBasis={LoadingIndex} />
+  ) : (
+    <CardContainer to={`/pokemon/${id}`} type={types[0].pokemon_v2_type.name}>
       <TextContainer>
-      <div>
-      <PokemonNumber>{"#" + id}</PokemonNumber>
-      <Dots />
-      </div>
-      <PokemonName>{name}</PokemonName>
-      <TypesRow>
-      {types.map((item, index) => (
-        <TypeTag type={item.pokemon_v2_type.name} key={index} />
-        ))}
+        <div>
+          <PokemonNumber>{"#" + id}</PokemonNumber>
+          <Dots />
+        </div>
+        <PokemonName>{name}</PokemonName>
+        <TypesRow>
+          {types.map((item, index) => (
+            <TypeTag type={item.pokemon_v2_type.name} key={index} />
+          ))}
         </TypesRow>
-        </TextContainer>
-        <PokemonImageContainer>
+      </TextContainer>
+      <PokemonImageContainer>
         <PokemonSprite src={sprites} />
         <PokemonShadow src={sprites} />
-        </PokemonImageContainer>
-        <BackGroundImageContainer>
+      </PokemonImageContainer>
+      <BackGroundImageContainer>
         <Pokeball />
-        </BackGroundImageContainer>
-        </CardContainer>
-        )
+      </BackGroundImageContainer>
+    </CardContainer>
   );
 };
 
