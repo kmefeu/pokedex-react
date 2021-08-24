@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { TypeStyle } from "utils/TypeStyle";
+import { Textfit } from "react-textfit";
 
 interface CardContainerProps {
   type: any;
@@ -33,7 +34,7 @@ export const PokemonId = styled.span`
   color: var(--lightDark);
 `;
 
-export const PokemonName = styled.span`
+export const PokemonName = styled(Textfit)`
   width: 100%;
   font-style: normal;
   font-weight: bold;

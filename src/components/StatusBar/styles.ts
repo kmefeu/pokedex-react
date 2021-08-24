@@ -28,11 +28,13 @@ export const BarContainer = styled.div`
   margin: 5px 0px;
   grid-area: "bar";
   display: flex;
+  border-radius: 4px;
 `;
 
 export const Bar = styled.div<BarProps>`
   display: flex;
   transition: 1s ease-in-out;
+  border-radius: 4px;
   width: ${({ pokemonPoints, maxPoints }) => {
     return (pokemonPoints * 100) / maxPoints + `%`;
   }};
@@ -45,8 +47,10 @@ export const Bar = styled.div<BarProps>`
 
 export const Number = styled.span`
   color: #fff;
-  font-weight: bold;
+  font-weight: 400;
+  width: 100%;
   padding: 2px 4px;
+  text-align: right;
 `;
 
 export default BarContainer;

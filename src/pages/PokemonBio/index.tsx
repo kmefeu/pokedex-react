@@ -1,6 +1,5 @@
 import usePokedexNavigation from "api/hook/usePokedexNavigation";
 import usePokemonBio from "api/hook/usePokemonBio";
-import { Textfit } from "react-textfit";
 import StatusList from "components/StatusList";
 import TypeTag from "components/TypeTag";
 import React, { useEffect } from "react";
@@ -50,10 +49,8 @@ const PokemonBio: React.FC = () => {
             </button>
             <PokemonIdRow>
               <PokemonId>#{pokemon.id}</PokemonId>
-              <PokemonName>
-                <Textfit mode="single">
-                  {pokemon.name.replace("-", " ")}
-                </Textfit>
+              <PokemonName mode="single">
+                {pokemon.name.replace("-", " ")}
               </PokemonName>
             </PokemonIdRow>
             <PokemonTypesRow>
