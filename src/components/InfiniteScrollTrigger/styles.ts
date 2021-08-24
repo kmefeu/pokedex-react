@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-export const Trigger = styled.div`
-  width: 100%;
-  height: 5px;
+interface TriggerProps {
+  loading: boolean;
+}
+
+export const Trigger = styled.div<TriggerProps>`
+  ${(loading) => {
+    return !loading ? ` width: 100%; height: 5px;` : `width: 0px; height: 0px;`;
+  }}
 `;

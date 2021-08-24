@@ -14,11 +14,11 @@ export const Container = styled.div`
 export const LeftContainer = styled.div<CardContainerProps>`
   width: 60%;
   padding: 20px;
-
+  transition: 1s ease-in-out;
   ${({ type }) => {
     const typeStyle = TypeStyle(type);
     return `background: ${typeStyle.secondaryColor}`;
-  }}
+  }};
 `;
 
 export const PokemonIdRow = styled.div`
@@ -81,10 +81,7 @@ export const RightContainer = styled.div`
   padding: 45px;
 `;
 
-export const ChartContainer = styled.div`
-  width: 100%;
-  height: 280px;
-`;
+export const ChartContainer = styled.div``;
 
 export const FlavorText = styled.p`
   font-style: normal;
@@ -93,7 +90,7 @@ export const FlavorText = styled.p`
   line-height: 46px;
   letter-spacing: 0.025em;
   width: 100%;
-  margin-top: 160px;
+  color: var(--midGray);
 `;
 
 export const Line = styled.div`
@@ -106,6 +103,10 @@ export const Line = styled.div`
 
 export const PokemonStats = styled.div`
   color: var(--midGray);
+
+  ul {
+    padding: 0;
+  }
 
   li {
     font-weight: 300;

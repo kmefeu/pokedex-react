@@ -1,4 +1,4 @@
-import LoadingPokemonCard from "components/LoadingPokemonCard";
+import LoadingPokemonCard from "components/PokemonCard/LoadingPokemonCard";
 import TypeTag from "components/TypeTag";
 import React from "react";
 
@@ -43,7 +43,7 @@ const PokemonCard = ({
           <PokemonNumber>{"#" + id}</PokemonNumber>
           <Dots />
         </div>
-        <PokemonName>{name}</PokemonName>
+        <PokemonName>{name.replace("-", " ")}</PokemonName>
         <TypesRow>
           {types.map((item, index) => (
             <TypeTag type={item.pokemon_v2_type.name} key={index} />

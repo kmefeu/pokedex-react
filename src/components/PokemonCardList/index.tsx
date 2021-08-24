@@ -4,8 +4,7 @@ import PokemonCard from "components/PokemonCard";
 import { PokemonCardListContainer } from "./styles";
 
 const PokemonCardList: React.FC = () => {
-  const { setLoadCalls, pokemonList, loadingPokemonList, offset } =
-    useInfiniteScroll();
+  const { setLoadCalls, pokemonList, loadingPokemonList } = useInfiniteScroll();
 
   return (
     <PokemonCardListContainer>

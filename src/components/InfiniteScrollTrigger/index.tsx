@@ -11,7 +11,6 @@ const InfiniteScrollTrigger = (props: InfiniteScrollTriggerInterface) => {
   const { functionToTrigger, loading } = props;
 
   useEffect(() => {
-    console.log(loading);
     if (loading) return;
 
     const intersectionObserver = new IntersectionObserver((entries) => {
@@ -24,9 +23,9 @@ const InfiniteScrollTrigger = (props: InfiniteScrollTriggerInterface) => {
       intersectionObserver.observe(triggerElement.current);
 
     return () => intersectionObserver.disconnect();
-  }, [functionToTrigger]);
+  }, [functionToTrigger, loading]);
 
-  return <Trigger ref={triggerElement} />;
+  return <Trigger ref={triggerElement} loading={loading} />;
 };
 
 export default InfiniteScrollTrigger;

@@ -13,6 +13,7 @@ export const useInfiniteScroll = () => {
   const getPokemonCardsInfoBlock = async () => {
     let localBase = offsetBase;
     let localTarget = offsetTarget;
+    setLoadingPokemonList(true);
     const cardQuey = pokemonCardQueryBuilder(localBase, localTarget);
     const {
       data: { pokemon_v2_pokemon },
@@ -25,14 +26,13 @@ export const useInfiniteScroll = () => {
 
     setOffsetBase(localBase + offset);
     setOffsetTarget(localTarget + offset);
+    setLoadingPokemonList(false);
   };
 
   useEffect(() => {
-    setLoadingPokemonList(true);
-    getPokemonCardsInfoBlock().then(() => setLoadingPokemonList(false));
+    getPokemonCardsInfoBlock();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadCalls]);
-
-  console.log(pokemonList);
 
   return {
     pokemonList,

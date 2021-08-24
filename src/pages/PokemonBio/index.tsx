@@ -1,8 +1,10 @@
-import getData from "api/request/getData";
-import PokemonRadarChart from "components/PokemonRadarChart";
+import usePokedexNavigation from "api/hook/usePokedexNavigation";
+import usePokemonBio from "api/hook/usePokemonBio";
+import { Textfit } from "react-textfit";
+import StatusList from "components/StatusList";
 import TypeTag from "components/TypeTag";
-import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 import {
   Container,
@@ -22,56 +24,16 @@ import {
 } from "./styles";
 
 const PokemonBio: React.FC = () => {
-  const [pokemon, setPokemon] = useState<any>({});
-  const [loadingData, setLoadingData] = useState(true);
-  const { id } = useParams<any>();
   const history = useHistory();
+  const { ChangePage } = usePokedexNavigation();
+  const { pokemon, loadingData } = usePokemonBio();
 
   useEffect(() => {
-    const asyncRequest = async () => {
-      const query = `{
-        pokemon_v2_pokemon(where: {id: {_eq: ${id}}, pokemon_v2_pokemonstats: {}}) {
-          id
-          name
-          weight
-          height
-          pokemon_v2_pokemonspecy {
-            pokemon_v2_pokemonspecies {
-              pokemon_v2_evolutionchain {
-                pokemon_v2_pokemonspecies_aggregate {
-                  nodes {
-                    id
-                  }
-                }
-              }
-              pokemon_v2_pokemonspeciesflavortexts(offset: 0, limit: 1) {
-                flavor_text
-              }
-            }
-          }
-          pokemon_v2_pokemonstats {
-            base_stat
-            pokemon_v2_stat {
-              name
-            }
-          }
-          pokemon_v2_pokemontypes {
-            pokemon_v2_type {
-              name
-            }
-          }
-        }
-
-      }
-      `;
-      const result = await getData(query);
-      setPokemon(result.data.pokemon_v2_pokemon[0]);
-      setLoadingData(false);
+    document.addEventListener("keydown", ChangePage, false);
+    return () => {
+      document.removeEventListener("keydown", ChangePage, false);
     };
-
-    asyncRequest();
-  }, [id]);
-  console.log(pokemon);
+  }, [ChangePage]);
 
   return (
     <>
@@ -80,12 +42,19 @@ const PokemonBio: React.FC = () => {
           <LeftContainer
             type={pokemon.pokemon_v2_pokemontypes[0].pokemon_v2_type.name}
           >
-            <button className="button icon-left" onClick={history.goBack}>
+            <button
+              className="button icon-left"
+              onClick={() => history.push("/")}
+            >
               Back
             </button>
             <PokemonIdRow>
-              <PokemonId>#00{pokemon.id}</PokemonId>
-              <PokemonName>{pokemon.name}</PokemonName>
+              <PokemonId>#{pokemon.id}</PokemonId>
+              <PokemonName>
+                <Textfit mode="single">
+                  {pokemon.name.replace("-", " ")}
+                </Textfit>
+              </PokemonName>
             </PokemonIdRow>
             <PokemonTypesRow>
               {pokemon.pokemon_v2_pokemontypes.map(
@@ -113,16 +82,15 @@ const PokemonBio: React.FC = () => {
           </LeftContainer>
           <RightContainer>
             <ChartContainer>
-              <PokemonRadarChart
+              <StatusList
                 data={pokemon.pokemon_v2_pokemonstats}
                 type={pokemon.pokemon_v2_pokemontypes[0].pokemon_v2_type.name}
               />
             </ChartContainer>
             <FlavorText>
-              {
-                pokemon.pokemon_v2_pokemonspecy.pokemon_v2_pokemonspecies[0]
-                  ?.pokemon_v2_pokemonspeciesflavortexts[0].flavor_text
-              }
+              {pokemon.pokemon_v2_pokemonspecy.pokemon_v2_pokemonspecies[0]?.pokemon_v2_pokemonspeciesflavortexts[0].flavor_text
+                .replace(/[\r\n]|+/gm, " ")
+                .replace("POKéMON", "pokémon")}
             </FlavorText>
             <Line />
             <PokemonStats>
