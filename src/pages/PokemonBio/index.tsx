@@ -50,7 +50,7 @@ const PokemonBio: React.FC = () => {
             <PokemonIdRow>
               <PokemonId>#{pokemon.id}</PokemonId>
               <PokemonName mode="single">
-                {pokemon.name.replace("-", " ")}
+                {pokemon.name.replace(/-/gm, " ")}
               </PokemonName>
             </PokemonIdRow>
             <PokemonTypesRow>

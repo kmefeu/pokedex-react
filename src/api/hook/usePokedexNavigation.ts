@@ -1,6 +1,6 @@
 import { allPokemonIdQuery } from "api/querys/allPokemonIdQuery";
 import getData from "api/request/getData";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 
 const UsePokedexNavigation = () => {
@@ -23,20 +23,22 @@ const UsePokedexNavigation = () => {
     [loadingList, currentIndex, listLength, history, idList]
   );
 
-  useEffect(() => {
-    const asyncRequest = async () => {
+  useMemo(() => {
+    const getIdList = async () => {
+      setLoadingList(true);
       console.log("bateu na api");
       const result = await getData(allPokemonIdQuery);
       const list = result.data.pokemon_v2_pokemon.map((obj: any) => obj.id);
-      const index = list.indexOf(parseInt(id));
       setIdList(list);
-      setListLength(list.length);
-      setCurrentIndex(index);
       setLoadingList(false);
     };
+    getIdList();
+  }, []);
 
-    asyncRequest();
-  }, [id]);
+  useMemo(() => {
+    setListLength(idList.length);
+    setCurrentIndex(idList.indexOf(parseInt(id)));
+  }, [id, idList]);
 
   return {
     idList,
