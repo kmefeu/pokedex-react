@@ -26,7 +26,6 @@ const UsePokedexNavigation = () => {
   useMemo(() => {
     const getIdList = async () => {
       setLoadingList(true);
-      console.log("bateu na api");
       const result = await getData(allPokemonIdQuery);
       const list = result.data.pokemon_v2_pokemon.map((obj: any) => obj.id);
       setIdList(list);
