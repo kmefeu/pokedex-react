@@ -4,6 +4,7 @@ import StatusList from "components/StatusList";
 import TypeTag from "components/TypeTag";
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import RandomTextEffect from "utils/RandomTextEffect";
 
 import {
   Container,
@@ -85,9 +86,11 @@ const PokemonBio: React.FC = () => {
               />
             </ChartContainer>
             <FlavorText>
-              {pokemon.pokemon_v2_pokemonspecy.pokemon_v2_pokemonspecies[0]?.pokemon_v2_pokemonspeciesflavortexts[0].flavor_text
-                .replace(/[\r\n]|+/gm, " ")
-                .replace("POKéMON", "pokémon")}
+              <RandomTextEffect
+                messages={pokemon.pokemon_v2_pokemonspecy.pokemon_v2_pokemonspecies[0]?.pokemon_v2_pokemonspeciesflavortexts[0].flavor_text
+                  .replace(/[\r\n]|+/gm, " ")
+                  .replace("POKéMON", "pokémon")}
+              />
             </FlavorText>
             <Line />
             <PokemonStats>
