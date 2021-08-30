@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface randomTextEffectProps {
   messages: [string];
@@ -12,15 +12,25 @@ interface fadeBufferProps {
 const RandomTextEffect: React.FC<randomTextEffectProps> = ({
   messages,
 }: randomTextEffectProps) => {
-  const [text, setText] = useState(messages);
-  const [length, setLength] = useState(messages.length);
   const randomCharacters = "&#*+%?£@§$";
+  const [index, setIndex] = useState(0);
+  const [length, setLength] = useState(0);
+
+  const [decryptingText, setDecryptingText] = useState("");
   const [randomText, setRandomText] = useState("");
+  const [outputText, setOutputText] = useState("");
   const [fadeBuffer, setFadeBuffer] = useState<fadeBufferProps[]>([]);
+  const [fadeBufferBoolean, setFadeBufferBoolean] = useState(false);
   const [fader, setFader] = useState<fadeBufferProps>();
   const [doCycles, setDoCycles] = useState(false);
 
+  useEffect(() => {
+    setTimeout(animateIn, 100);
+  }, []);
+
   const generateRandomText = () => {
+    setRandomText(() => "");
+
     while (randomText.length < length) {
       setRandomText(
         (s) =>
@@ -33,45 +43,49 @@ const RandomTextEffect: React.FC<randomTextEffectProps> = ({
   };
 
   const animateIn = () => {
-    if (length < randomText.length) {
+    if (length < messages[index].length) {
       setLength((s) => s + 2);
-      if (length > randomText.length) {
-        setLength(randomText.length);
+      if (length > messages[index].length) {
+        setLength(messages[index].length);
       }
 
       generateRandomText();
+      setOutputText(() => randomText);
 
-      setTimeout(() => animateIn(), 1200);
+      setTimeout(() => animateIn(), 20);
     } else {
-      setTimeout(() => animateFadeBuffer(), 1200);
+      setTimeout(() => animateFadeBuffer(), 20);
     }
   };
 
   const animateFadeBuffer = () => {
-    if (!fadeBuffer.length) {
+    if (!fadeBufferBoolean) {
       setFadeBuffer(() => []);
-      for (let i = 0; i < randomText.length; i++) {
+      for (let i = 0; i < messages[index].length; i++) {
         setFadeBuffer((s) => {
           return [
             ...s,
             {
               c: Math.floor(Math.random() * 12) + 1,
-              l: randomText.charAt(i),
+              l: messages[index].charAt(i),
             },
           ];
         });
       }
     }
 
+    setDoCycles(() => false);
+    setDecryptingText(() => "");
+
     for (let i = 0; i < fadeBuffer.length; i++) {
       setFader(() => fadeBuffer[i]);
       if (fader) {
         if (fader.c > 0) {
-          setDoCycles(true);
+          setDoCycles(() => true);
           const faderC = fader.c - 1;
           const faderL = fader.l;
           setFader(() => ({ c: faderC, l: faderL }));
-          setText((s) =>
+          setDecryptingText((s) =>
             s.concat(
               randomCharacters.charAt(
                 Math.floor(Math.random() * randomCharacters.length)
@@ -79,28 +93,32 @@ const RandomTextEffect: React.FC<randomTextEffectProps> = ({
             )
           );
         } else {
-          setText((s) => s.concat(fader.l));
+          setDecryptingText((s) => s.concat(fader.l));
         }
       }
     }
 
+    setOutputText(() => decryptingText);
+
     if (doCycles) {
-      setTimeout(() => animateFadeBuffer(), 500);
+      setTimeout(() => animateFadeBuffer(), 50);
     } else {
       setTimeout(() => cycleText(), 2000);
     }
   };
 
   const cycleText = () => {
-    if (text.length + 1 >= length) {
-      setText("");
+    setIndex((s) => s++);
+    if (index >= messages.length) {
+      setIndex(() => 0);
     }
-    setLength(0);
-    setFadeBuffer([]);
+    setLength(() => 0);
+    setFadeBufferBoolean(() => false);
     setTimeout(animateIn, 200);
+    setOutputText(() => "");
   };
 
-  return <>{randomText + text}</>;
+  return <>{outputText}</>;
 };
 
 export default RandomTextEffect;

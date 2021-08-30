@@ -87,9 +87,11 @@ const PokemonBio: React.FC = () => {
             </ChartContainer>
             <FlavorText>
               <RandomTextEffect
-                messages={pokemon.pokemon_v2_pokemonspecy.pokemon_v2_pokemonspecies[0]?.pokemon_v2_pokemonspeciesflavortexts[0].flavor_text
-                  .replace(/[\r\n]|+/gm, " ")
-                  .replace("POKéMON", "pokémon")}
+                messages={[
+                  pokemon.pokemon_v2_pokemonspecy.pokemon_v2_pokemonspecies[0]?.pokemon_v2_pokemonspeciesflavortexts[0].flavor_text
+                    .replace(/[\r\n]|+/gm, " ")
+                    .replace("POKéMON", "pokémon"),
+                ]}
               />
             </FlavorText>
             <Line />
