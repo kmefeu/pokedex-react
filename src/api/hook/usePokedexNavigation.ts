@@ -13,10 +13,12 @@ const UsePokedexNavigation = () => {
 
   const ChangePage = useCallback(
     (event) => {
-      if (loadingList || !currentIndex) return;
+      console.log(currentIndex);
+      if (loadingList || currentIndex === undefined || currentIndex === null)
+        return;
       if (event.keyCode === 39 && currentIndex < listLength - 1) {
         history.push("/pokemon/" + idList[currentIndex + 1]);
-      } else if (event.keyCode === 37 && currentIndex !== 1) {
+      } else if (event.keyCode === 37 && currentIndex !== 0) {
         history.push("/pokemon/" + idList[currentIndex - 1]);
       }
     },
