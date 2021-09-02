@@ -13,7 +13,6 @@ const UsePokedexNavigation = () => {
 
   const ChangePage = useCallback(
     (event) => {
-      console.log(event.keyCode);
       if (loadingList || currentIndex === undefined || currentIndex === null)
         return;
       if (
