@@ -3,8 +3,11 @@ import usePokemonBio from "api/hook/usePokemonBio";
 import StatusList from "components/StatusList";
 import TypeTag from "components/TypeTag";
 import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import RandomTextEffect from "utils/RandomTextEffect";
+import NavigationButton from "components/NavigationButton";
+import GoBack from "assets/images/svg/goBack.svg";
+import ArrowLeft from "assets/images/svg/arrowLeft.svg";
+import ArrowRight from "assets/images/svg/arrowRight.svg";
 
 import {
   Container,
@@ -21,10 +24,10 @@ import {
   PokemonShadow,
   PokemonSprite,
   ChartContainer,
+  NavigationRow,
 } from "./styles";
 
 const PokemonBio: React.FC = () => {
-  const history = useHistory();
   const { ChangePage } = usePokedexNavigation();
   const { pokemon, loadingData } = usePokemonBio();
 
@@ -42,12 +45,11 @@ const PokemonBio: React.FC = () => {
           <LeftContainer
             type={pokemon.pokemon_v2_pokemontypes[0].pokemon_v2_type.name}
           >
-            <button
-              className="button icon-left"
-              onClick={() => history.push("/")}
-            >
-              Back
-            </button>
+            <NavigationButton
+              goTo={"/"}
+              iconSrc={GoBack}
+              alt="Go to homepage"
+            />
             <PokemonIdRow>
               <PokemonId>#{pokemon.id}</PokemonId>
               <PokemonName mode="single">
@@ -61,6 +63,18 @@ const PokemonBio: React.FC = () => {
                 )
               )}
             </PokemonTypesRow>
+            <NavigationRow>
+              <NavigationButton
+                goTo={"/"}
+                iconSrc={ArrowLeft}
+                alt="Go to homepage"
+              />
+              <NavigationButton
+                goTo={"/"}
+                iconSrc={ArrowRight}
+                alt="Go to homepage"
+              />
+            </NavigationRow>
             <PokemonSpritesRow>
               <PokemonSprite
                 src={

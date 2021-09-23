@@ -125,3 +125,12 @@ export const PokemonStats = styled.div`
     }
   }
 `;
+
+export const NavigationRow = styled.div`
+  position: absolute;
+  top: 550px;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  width: 55%;
+`;
