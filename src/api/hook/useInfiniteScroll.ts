@@ -14,10 +14,10 @@ export const useInfiniteScroll = () => {
     let localBase = offsetBase;
     let localTarget = offsetTarget;
     setLoadingPokemonList(true);
-    const cardQuey = pokemonCardQueryBuilder(localBase, localTarget);
+    const cardQuery = pokemonCardQueryBuilder(localBase, localTarget);
     const {
       data: { pokemon_v2_pokemon },
-    } = await getData(cardQuey);
+    } = await getData(cardQuery);
 
     setPokemonList((previousState) => [
       ...previousState,

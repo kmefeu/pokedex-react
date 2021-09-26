@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import LoadingPokeBall from "assets/images/svg/loadingPokeball.svg";
 
 import {
@@ -8,9 +8,18 @@ import {
   InputField,
 } from "./styles";
 
+import useSearch from "api/hook/useSearch";
+
 const SearchBar: React.FC = () => {
-  const [inputValue, setInputValue] = useState("");
   const [inputFocus, setInputFocus] = useState(false);
+  const { customSearch, inputValue, setInputValue } = useSearch();
+
+  useEffect(() => {
+    document.addEventListener("keydown", customSearch, false);
+    return () => {
+      document.removeEventListener("keydown", customSearch, false);
+    };
+  }, [customSearch]);
 
   return (
     <SearchBarContainer>
@@ -19,7 +28,7 @@ const SearchBar: React.FC = () => {
       </LoadingContainer>
       <InputField
         type="text"
-        onChange={(input) => setInputValue(input.target.value)}
+        onChange={(input) => setInputValue(input.target.value.toLowerCase())}
         placeholder="
         Which Pokemon are you looking for ?"
         onFocus={() => setInputFocus(true)}
