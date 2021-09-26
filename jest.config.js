@@ -12,4 +12,9 @@ module.exports = {
   // criando o hambiente perfeito para simular a nossa aplicação e testar os nosso componentes
   // portanto ele cria um obejto javaScript que é um espelho da DOM
   testEnvironment: "jsdom",
+
+  moduleNameMapper: {
+    //indica a bliblioteca que ira converter/tranformar os asquivos com as estenções listadas para que eles sejam compreensíveis para o jest
+    "\\.(scss|css|sass)$": "identity-obj-proxy",
+  },
 };
