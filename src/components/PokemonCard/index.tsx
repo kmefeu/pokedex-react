@@ -26,7 +26,7 @@ interface PokemonCardProps {
   LoadingIndex: number;
 }
 
-const PokemonCard = ({
+const PokemonCard: React.FC<PokemonCardProps> = ({
   name,
   id,
   types,

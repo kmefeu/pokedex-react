@@ -1,4 +1,4 @@
-import useInfiniteScroll from "api/hook/useInfiniteScroll";
+import useInfiniteScroll from "hook/useInfiniteScroll";
 import InfiniteScrollTrigger from "components/InfiniteScrollTrigger";
 import PokemonCard from "components/PokemonCard";
 import { PokemonCardListContainer } from "./styles";

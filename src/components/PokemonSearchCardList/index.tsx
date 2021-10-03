@@ -1,4 +1,4 @@
-import useSearch from "api/hook/useSearch";
+import useSearch from "hook/useSearch";
 import InfiniteScrollTrigger from "components/InfiniteScrollTrigger";
 import PokemonCard from "components/PokemonCard";
 import { PokemonCardListContainer } from "./styles";
@@ -6,7 +6,7 @@ import { PokemonCardListContainer } from "./styles";
 const PokemonSearchCardListList: React.FC = () => {
   const { searchList, loading } = useSearch();
 
-  console.log(searchList);
+  console.log("searchList " + searchList);
   return (
     <PokemonCardListContainer>
       {searchList?.map((item: any, index: number) => (

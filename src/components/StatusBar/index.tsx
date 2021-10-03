@@ -8,7 +8,12 @@ interface StatusBarProps {
   type: string;
 }
 
-function StatusBar({ name, pokemonPoints, maxPoints, type }: StatusBarProps) {
+const StatusBar: React.FC<StatusBarProps> = ({
+  name,
+  pokemonPoints,
+  maxPoints,
+  type,
+}: StatusBarProps) => {
   return (
     <Container>
       <Title>
@@ -27,6 +32,6 @@ function StatusBar({ name, pokemonPoints, maxPoints, type }: StatusBarProps) {
       </BarContainer>
     </Container>
   );
-}
+};
 
 export default StatusBar;

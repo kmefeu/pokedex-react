@@ -5,7 +5,9 @@ interface LoadingPokemonCardProps {
   LoadingDelayBasis: number;
 }
 
-const LoadingPokemonCard = ({ LoadingDelayBasis }: LoadingPokemonCardProps) => {
+const LoadingPokemonCard: React.FC<LoadingPokemonCardProps> = ({
+  LoadingDelayBasis,
+}: LoadingPokemonCardProps) => {
   return (
     <CardContainer CardIndex={LoadingDelayBasis}>
       <Card />

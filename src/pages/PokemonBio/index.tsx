@@ -1,5 +1,5 @@
-import usePokedexNavigation from "api/hook/usePokedexNavigation";
-import usePokemonBio from "api/hook/usePokemonBio";
+import usePokedexNavigation from "hook/usePokedexNavigation";
+import usePokemonBio from "hook/usePokemonBio";
 import StatusList from "components/StatusList";
 import TypeTag from "components/TypeTag";
 import React, { useEffect } from "react";

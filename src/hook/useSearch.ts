@@ -1,5 +1,5 @@
 import getData from "api/request/getData";
-import React, { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 
 const useSearch = () => {
   const [isInputEmpty, setIsInputEmpty] = useState(true);
@@ -10,11 +10,13 @@ const useSearch = () => {
   const isNumeric = (n: any) => {
     return !isNaN(parseFloat(n)) && isFinite(n);
   };
-
   const customSearch = useCallback(
     async (event) => {
       if (event.keyCode !== 13) return;
+      if (inputValue === "") return setIsInputEmpty(true);
       setLoading(true);
+      setIsInputEmpty(false);
+
       if (!isNumeric(inputValue)) {
         const nameQuery = `{
           pokemon_v2_pokemon(limit: 10, offset: 0, where: {name: {_regex: "${inputValue}"}}) {
@@ -33,36 +35,30 @@ const useSearch = () => {
         } = await getData(nameQuery);
         setSearchList(pokemon_v2_pokemon);
         setLoading(false);
-        return;
       }
-      const idQuery = `{
-        pokemon_v2_pokemon(limit: 10, offset: 0, where: {id: {_eq: ${inputValue}}}) {
-          name
-          id
-          pokemon_v2_pokemontypes {
-            pokemon_v2_type {
-              name
+      if (isNumeric(inputValue)) {
+        const idQuery = `{
+          pokemon_v2_pokemon(limit: 10, offset: 0, where: {id: {_eq: ${inputValue}}}) {
+            name
+            id
+            pokemon_v2_pokemontypes {
+              pokemon_v2_type {
+                name
+              }
             }
           }
         }
+        `;
+        const {
+          data: { pokemon_v2_pokemon },
+        } = await getData(idQuery);
+        setSearchList(pokemon_v2_pokemon);
+        setLoading(false);
       }
-`;
-      const {
-        data: { pokemon_v2_pokemon },
-      } = await getData(idQuery);
-      setSearchList(pokemon_v2_pokemon);
-      setLoading(false);
-      return;
     },
-    [inputValue, setLoading, setSearchList]
+    [inputValue]
   );
-
-  useEffect(() => {
-    inputValue.length >= 1
-      ? setIsInputEmpty(() => false)
-      : setIsInputEmpty(() => true);
-  }, [inputValue.length]);
-
+  console.log("hook " + isInputEmpty);
   return {
     isInputEmpty,
     setIsInputEmpty,

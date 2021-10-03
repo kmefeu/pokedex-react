@@ -1,6 +1,6 @@
 import { allPokemonIdQuery } from "api/querys/allPokemonIdQuery";
 import getData from "api/request/getData";
-import React, { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 
 const UsePokedexNavigation = () => {
@@ -30,7 +30,7 @@ const UsePokedexNavigation = () => {
     [loadingList, currentIndex, listLength, history, idList]
   );
 
-  useMemo(() => {
+  useEffect(() => {
     const getIdList = async () => {
       setLoadingList(true);
       const result = await getData(allPokemonIdQuery);

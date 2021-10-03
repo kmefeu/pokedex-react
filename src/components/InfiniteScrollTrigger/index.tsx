@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Trigger } from "./styles";
 
 interface InfiniteScrollTriggerInterface {
@@ -6,7 +6,9 @@ interface InfiniteScrollTriggerInterface {
   loading: boolean;
 }
 
-const InfiniteScrollTrigger = (props: InfiniteScrollTriggerInterface) => {
+const InfiniteScrollTrigger: React.FC<InfiniteScrollTriggerInterface> = (
+  props: InfiniteScrollTriggerInterface
+) => {
   const triggerElement = useRef<HTMLDivElement>(null);
   const { functionToTrigger, loading } = props;
 
@@ -25,7 +27,7 @@ const InfiniteScrollTrigger = (props: InfiniteScrollTriggerInterface) => {
     return () => intersectionObserver.disconnect();
   }, [functionToTrigger, loading]);
 
-  return <Trigger ref={triggerElement} loading={loading} />;
+  return <Trigger ref={triggerElement} />;
 };
 
 export default InfiniteScrollTrigger;

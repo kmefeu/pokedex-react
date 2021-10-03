@@ -1,13 +1,10 @@
-export const pokemonCardQueryBuilder = (
-  queryOffsetBase: number,
-  queryOffsetTarget: number
-) => {
+export const pokemonCardQueryBuilder = (base: number, offset: number) => {
   return (
     `{
     pokemon_v2_pokemon(limit: ` +
-    queryOffsetTarget +
+    offset +
     `, offset: ` +
-    queryOffsetBase +
+    base +
     `) {
           name
           id

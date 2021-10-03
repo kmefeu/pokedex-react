@@ -5,7 +5,10 @@ interface StatusListProps {
   data: any;
   type: string;
 }
-const StatusList = ({ data, type }: StatusListProps) => {
+const StatusList: React.FC<StatusListProps> = ({
+  data,
+  type,
+}: StatusListProps) => {
   return data.map((obj: any) => {
     return (
       <StatusBar

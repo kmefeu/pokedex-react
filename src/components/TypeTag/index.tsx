@@ -4,7 +4,7 @@ import { TagContainer, TypeImage, TypeName } from "./styles";
 interface TypeTagProps {
   type: any;
 }
-const TypeTag = ({ type }: TypeTagProps) => {
+const TypeTag: React.FC<TypeTagProps> = ({ type }: TypeTagProps) => {
   return (
     <TagContainer type={type}>
       <TypeImage type={type} />

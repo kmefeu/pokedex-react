@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import LoadingPokeBall from "assets/images/svg/loadingPokeball.svg";
 
 import {
@@ -8,7 +8,7 @@ import {
   InputField,
 } from "./styles";
 
-import useSearch from "api/hook/useSearch";
+import useSearch from "hook/useSearch";
 
 const SearchBar: React.FC = () => {
   const [inputFocus, setInputFocus] = useState(false);
