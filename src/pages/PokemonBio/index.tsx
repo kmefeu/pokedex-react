@@ -105,6 +105,7 @@ const PokemonBio: React.FC = () => {
                 <RandomTextEffect
                   messages={[
                     pokemon.pokemon_v2_pokemonspecy.pokemon_v2_pokemonspecies[0]?.pokemon_v2_pokemonspeciesflavortexts[0].flavor_text
+                      // eslint-disable-next-line no-control-regex
                       .replace(/[\r\n]|+/gm, " ")
                       .replace("POKéMON", "pokémon"),
                   ]}

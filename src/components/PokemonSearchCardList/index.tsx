@@ -1,10 +1,11 @@
-import useSearch from "hook/useSearch";
+import React, { useContext } from "react";
 import InfiniteScrollTrigger from "components/InfiniteScrollTrigger";
 import PokemonCard from "components/PokemonCard";
 import { PokemonCardListContainer } from "./styles";
+import PokedexContext from "context/PokedexContext";
 
 const PokemonSearchCardListList: React.FC = () => {
-  const { searchList, loading } = useSearch();
+  const { searchList, loading } = useContext(PokedexContext);
 
   console.log("searchList " + searchList);
   return (

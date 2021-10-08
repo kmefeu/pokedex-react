@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import LoadingPokeBall from "assets/images/svg/loadingPokeball.svg";
 
 import {
@@ -8,11 +8,12 @@ import {
   InputField,
 } from "./styles";
 
-import useSearch from "hook/useSearch";
+import PokedexContext from "context/PokedexContext";
 
 const SearchBar: React.FC = () => {
   const [inputFocus, setInputFocus] = useState(false);
-  const { customSearch, inputValue, setInputValue } = useSearch();
+  const { customSearch, inputValue, setInputValue } =
+    useContext(PokedexContext);
 
   useEffect(() => {
     document.addEventListener("keydown", customSearch, false);

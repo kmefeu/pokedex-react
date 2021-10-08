@@ -4,15 +4,31 @@ import "styles/font.css";
 import "styles/global.css";
 import Routes from "routes";
 import PokedexContext from "context/PokedexContext";
-import UsePokedexNavigation from "hook/usePokedexNavigation";
 import useSearch from "hook/useSearch";
 
 function App() {
-  const { idList } = UsePokedexNavigation();
-  const { isInputEmpty } = useSearch();
+  const {
+    isInputEmpty,
+    customSearch,
+    inputValue,
+    setInputValue,
+    searchList,
+    setSearchList,
+    loading,
+  } = useSearch();
 
   return (
-    <PokedexContext.Provider value={{ idList, isInputEmpty }}>
+    <PokedexContext.Provider
+      value={{
+        isInputEmpty,
+        customSearch,
+        inputValue,
+        setInputValue,
+        searchList,
+        setSearchList,
+        loading,
+      }}
+    >
       <Routes />
     </PokedexContext.Provider>
   );

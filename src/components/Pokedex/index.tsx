@@ -8,6 +8,7 @@ import PokedexContext from "context/PokedexContext";
 const Pokedex: React.FC = () => {
   const { isInputEmpty } = useContext(PokedexContext);
   console.log("pokedex" + isInputEmpty);
+
   return (
     <PokedexContainer>
       <SearchBar />
