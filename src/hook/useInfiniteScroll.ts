@@ -1,4 +1,4 @@
-import pokemonCardQueryBuilder from "api/querys/pokemonCardQueryBuilder";
+import pokemonCardQueryBuilder from "api/queries/pokemonCardQueryBuilder";
 import getData from "api/request/getData";
 import { useEffect, useState } from "react";
 

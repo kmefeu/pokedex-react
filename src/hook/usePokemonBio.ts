@@ -1,4 +1,4 @@
-import { pokemonBioQueryBuilder } from "api/querys/pokemonBioQueryBuilder";
+import { pokemonBioQueryBuilder } from "api/queries/pokemonBioQueryBuilder";
 import getData from "api/request/getData";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";

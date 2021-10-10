@@ -27,7 +27,7 @@ const InfiniteScrollTrigger: React.FC<InfiniteScrollTriggerInterface> = (
     return () => intersectionObserver.disconnect();
   }, [functionToTrigger, loading]);
 
-  return <Trigger ref={triggerElement} />;
+  return loading ? <></> : <Trigger ref={triggerElement} />;
 };
 
 export default InfiniteScrollTrigger;

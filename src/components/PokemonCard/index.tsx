@@ -34,9 +34,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
   loading,
   LoadingIndex,
 }: PokemonCardProps) => {
-  return loading ? (
-    <LoadingPokemonCard LoadingDelayBasis={LoadingIndex} />
-  ) : (
+  return (
     <CardContainer to={`/pokemon/${id}`} type={types[0].pokemon_v2_type.name}>
       <TextContainer>
         <div>
@@ -51,7 +49,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
         </TypesRow>
       </TextContainer>
       <PokemonImageContainer>
-        <PokemonSprite src={sprites} />
+        <PokemonSprite src={sprites} id={parseInt(id)} />
         <PokemonShadow src={sprites} />
       </PokemonImageContainer>
       <BackGroundImageContainer>

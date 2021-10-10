@@ -1,4 +1,4 @@
-import { allPokemonIdQuery } from "api/querys/allPokemonIdQuery";
+import { allPokemonIdQuery } from "api/queries/allPokemonIdQuery";
 import getData from "api/request/getData";
 import { useCallback, useMemo, useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";

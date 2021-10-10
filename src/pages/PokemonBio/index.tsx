@@ -31,6 +31,36 @@ const PokemonBio: React.FC = () => {
   const { ChangePage } = usePokedexNavigation();
   const { pokemon, loadingData } = usePokemonBio();
 
+  const getSprite = (id: string) => {
+    let number = parseInt(id);
+    if (number < 650) {
+      return (
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/" +
+        id +
+        ".gif"
+      );
+    }
+    if (number < 10022) {
+      return (
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" +
+        id +
+        ".png"
+      );
+    }
+    if (number > 10023) {
+      return (
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" +
+        id +
+        ".png"
+      );
+    }
+    return (
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" +
+      id +
+      ".png"
+    );
+  };
+
   useEffect(() => {
     document.addEventListener("keydown", ChangePage, false);
     return () => {
@@ -76,20 +106,8 @@ const PokemonBio: React.FC = () => {
               />
             </NavigationRow>
             <PokemonSpritesRow>
-              <PokemonSprite
-                src={
-                  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/" +
-                  pokemon.id +
-                  ".gif"
-                }
-              />
-              <PokemonShadow
-                src={
-                  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/" +
-                  pokemon.id +
-                  ".gif"
-                }
-              />
+              <PokemonSprite src={getSprite(pokemon.id)} />
+              <PokemonShadow src={getSprite(pokemon.id)} />
             </PokemonSpritesRow>
           </LeftContainer>
           <RightContainer>

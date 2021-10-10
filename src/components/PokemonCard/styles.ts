@@ -4,7 +4,11 @@ import PokeballImage from "../../assets/images/svg/pokeball.svg";
 import { TypeStyle } from "../../utils/TypeStyle";
 
 interface CardContainerProps {
-  type: any;
+  type: string;
+}
+
+interface SpriteProps {
+  id: number | any;
 }
 
 const BaseHeight = 140;
@@ -82,17 +86,20 @@ export const TypesRow = styled.div`
 
 export const PokemonImageContainer = styled.div``;
 
-export const PokemonSprite = styled.img`
+export const PokemonSprite = styled.img<SpriteProps>`
   position: absolute;
   margin-right: ${BasePadding + "px"};
   right: 0;
   bottom: 10px;
   height: ${SpriteHeight + "px"};
   z-index: 1;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: -webkit-crisp-edges;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
+  ${({ id }) => {
+    if (id && id < 650)
+      return `image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;`;
+  }}
 `;
 
 export const PokemonShadow = styled.img`
