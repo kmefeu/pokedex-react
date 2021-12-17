@@ -1,4 +1,3 @@
-import LoadingPokemonCard from "components/PokemonCard/LoadingPokemonCard";
 import TypeTag from "components/TypeTag";
 import React from "react";
 

@@ -18,6 +18,7 @@ const PokemonCardList: React.FC = () => {
 
   useEffect(() => {
     generateSkeleton();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getSprite = (id: string) => {
